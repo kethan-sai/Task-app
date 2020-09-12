@@ -1,0 +1,51 @@
+<div style="width: 400px; margin: auto">
+  <div *ngIf="currentMessage" class="edit-form">
+    <h4>Messages</h4>
+    <form>
+      <div class="form-group">
+        <label for="text">Message</label>
+        <input
+          type="text"
+          class="form-control"
+          id="text"
+          [(ngModel)]="currentMessage.text"
+          name="text"
+        />
+      </div>
+
+      <div class="form-group">
+        <label><strong>Status:</strong></label>
+        {{ currentMessage.published ? "Published" : "Pending" }}
+      </div>
+    </form>
+
+    <button
+      class="badge badge-primary mr-2"
+      *ngIf="currentMessage.published"
+      (click)="updatePublished(false)"
+    >
+      UnPublish
+    </button>
+    <button
+      *ngIf="!currentMessage.published"
+      class="badge badge-primary mr-2"
+      (click)="updatePublished(true)"
+    >
+      Publish
+    </button>
+
+    <button class="badge badge-danger mr-2" (click)="deleteMessage()">
+      Delete
+    </button>
+
+    <button type="submit" class="badge badge-success" (click)="updateMessage()">
+      Update
+    </button>
+    <p>{{ message }}</p>
+  </div>
+
+  <div *ngIf="!currentMessage">
+    <br />
+    <p>Cannot access this Message...</p>
+  </div>
+</div>

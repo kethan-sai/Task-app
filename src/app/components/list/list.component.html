@@ -1,0 +1,61 @@
+<app-navbar></app-navbar>
+
+<div class="list row">
+  <div class="col-md-8">
+    <div class="input-group mb-3">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Search by word or letter"
+        [(ngModel)]="message"
+      />
+      <div class="input-group-append">
+        <button
+          class="btn btn-outline-secondary"
+          type="button"
+          (click)="searchMessage()"
+        >
+          Search
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <h4>Task List</h4>
+    <ul class="list-group">
+      <li
+        class="list-group-item"
+        *ngFor="let message of messages; let i = index"
+        [class.active]="i == currentIndex"
+        (click)="setActiveMessage(message, i)"
+      >
+        {{ message.text }}
+      </li>
+    </ul>
+
+    <button class="m-3 btn btn-sm btn-danger" (click)="removeAllMessages()">
+      Remove All
+    </button>
+  </div>
+  <div class="col-md-6">
+    <div *ngIf="currentMessage">
+      <h4>message</h4>
+      <div>
+        <label><strong>Message:</strong></label> {{ currentMessage.text }}
+      </div>
+      <div>
+        <label><strong>Status:</strong></label>
+        {{ currentMessage.published ? "Published" : "Pending" }}
+      </div>
+
+      <a class="badge badge-warning" routerLink="/home/{{ currentMessage.id }}">
+        Edit
+      </a>
+    </div>
+
+    <div *ngIf="!currentMessage">
+      <br />
+      <p>Please click on a message...</p>
+    </div>
+  </div>
+</div>

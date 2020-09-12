@@ -30,12 +30,10 @@
           },
           "configurations": {
             "production": {
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
-                }
-              ],
+              "fileReplacements": [{
+                "replace": "src/environments/environment.ts",
+                "with": "src/environments/environment.prod.ts"
+              }],
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
@@ -44,8 +42,7 @@
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
-              "budgets": [
-                {
+              "budgets": [{
                   "type": "initial",
                   "maximumWarning": "2mb",
                   "maximumError": "5mb"
@@ -62,6 +59,7 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
+            "port": 8081,
             "browserTarget": "cmp:build"
           },
           "configurations": {
@@ -88,7 +86,8 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "./node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
             "scripts": []
           }
@@ -119,6 +118,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "cmp"
+    }
+  },
+  "defaultProject": "cmp",
+  "cli": {
+    "analytics": "9d4abcd0-8d7b-474b-a4fa-770ac613e794"
+  }
 }
